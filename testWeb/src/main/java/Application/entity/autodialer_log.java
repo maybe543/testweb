@@ -19,9 +19,11 @@ import com.alibaba.fastjson.annotation.JSONField;
 public class autodialer_log implements Serializable{
 
 	private String uuid;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JSONField(format="yyyy-MM-dd HH:mm:ss")  
 	private Date create_datetime;
+	
 	private String table_name;
 	private String related_id;
 	private String domain;
