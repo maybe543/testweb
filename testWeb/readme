@@ -7,3 +7,51 @@
 	"flowid": "abc",			
 	"notify": "enter"			
 }
+
+
+CREATE TABLE `autodialer_number_7a5b7003-8b9a-4c68-a323-e2c1060c4a48` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `number` VARCHAR(20) NOT NULL,
+ `state` INT(11) NULL DEFAULT NULL,
+ `description` VARCHAR(255) NULL DEFAULT NULL,
+ `recycle` INT(11) NULL DEFAULT NULL,
+ `recycle` INT(11) NULL DEFAULT NULL,
+ `callid` VARCHAR(255) NULL DEFAULT NULL,
+ `calldate` DATETIME NULL DEFAULT NULL,
+ `answerdate` DATETIME NULL DEFAULT NULL,
+ `hangupdate` DATETIME NULL DEFAULT NULL,
+ `bill` INT(11) NULL DEFAULT NULL,
+ `duration` INT(11) NULL DEFAULT NULL,
+ `hangupcause` VARCHAR(255) NULL DEFAULT NULL,
+ `bridge_callid` VARCHAR(255) NULL DEFAULT NULL,
+ `bridge_number` VARCHAR(20) NULL DEFAULT NULL,
+ `bridge_calldate` DATETIME NULL DEFAULT NULL,
+ `bridge_answerdate` DATETIME NULL DEFAULT NULL,
+ `recordfile` VARCHAR(255) NULL DEFAULT NULL,
+ `status` VARCHAR(255) NULL DEFAULT NULL, 
+ `tableName` varchar(255) DEFAULT '', 
+ PRIMARY KEY (`id`),
+ UNIQUE INDEX `number` (`number`)
+ )
+ CREATE TABLE `autodialer_number_1` (
+`id` INT(11) NOT NULL AUTO_INCREMENT,
+`number` VARCHAR(20) NOT NULL,
+`state` INT(11) NULL DEFAULT NULL,
+`description` VARCHAR(255) NULL DEFAULT NULL,
+`recycle` INT(11) NULL DEFAULT NULL,
+`callid` VARCHAR(255) NULL DEFAULT NULL,
+`calldate` DATETIME NULL DEFAULT NULL,
+`answerdate` DATETIME NULL DEFAULT NULL,
+`hangupdate` DATETIME NULL DEFAULT NULL,
+`bill` INT(11) NULL DEFAULT NULL,
+`duration` INT(11) NULL DEFAULT NULL,
+`hangupcause` VARCHAR(255) NULL DEFAULT NULL,
+`bridge_callid` VARCHAR(255) NULL DEFAULT NULL,
+`bridge_number` VARCHAR(20) NULL DEFAULT NULL,
+`bridge_calldate` DATETIME NULL DEFAULT NULL,
+`bridge_answerdate` DATETIME NULL DEFAULT NULL,
+`recordfile` VARCHAR(255) NULL DEFAULT NULL,
+`status` VARCHAR(255) NULL DEFAULT NULL,
+PRIMARY KEY (`id`),
+UNIQUE INDEX `number` (`number`)
+)

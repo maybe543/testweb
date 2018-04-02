@@ -41,18 +41,18 @@ public class autodialer_timerange {
 		return begin_datetime;
 	}
 
-	public void setCreate_datetime(Time b) {
+	public void setBegin_datetime(Time b) {
 		this.begin_datetime = b;
 	}
 
 	// -----------end_datetime
 	@Column(name = "end_datetime")
 	public Time getEnd_datetime() {
-		return begin_datetime;
+		return end_datetime;
 	}
 
 	public void setEnd_datetime(Time e) {
-		this.begin_datetime = e;
+		this.end_datetime = e;
 	}
 
 	// -----------group_uuid---------//
@@ -62,7 +62,7 @@ public class autodialer_timerange {
 		return group_uuid;
 	}
 
-	public void setGroup_uuidString(String gu) {
+	public void setGroup_uuid(String gu) {
 		this.group_uuid = gu;
 	}
 }

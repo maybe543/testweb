@@ -34,7 +34,7 @@ public class autodialer_timegroup {
 		this.name = n;
 	}
 	// -----------domain---------//
-	@Id
+
 	@Column(name = "domain")
 	public String getDomain() {
 		return domain;

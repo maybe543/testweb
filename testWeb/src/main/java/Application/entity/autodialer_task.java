@@ -152,7 +152,7 @@ public class autodialer_task {
 		this.destination_context = s;
 	}
 	//-----------scheduling_policy_ratio
-	@Column(name = "scheduling_policy_ratio")
+	@Column(name = "scheduling_policy_ratio",nullable=true)
 	public float getScheduling_policy_ratio() {
 		return scheduling_policy_ratio;
 	}
@@ -161,7 +161,7 @@ public class autodialer_task {
 		this.scheduling_policy_ratio = s;
 	}
 	//-----------scheduling_queue
-	@Column(name = "scheduling_queue")
+	@Column(name = "scheduling_queue",nullable=true)
 	public String getScheduling_queue() {
 		return scheduling_queue;
 	}
