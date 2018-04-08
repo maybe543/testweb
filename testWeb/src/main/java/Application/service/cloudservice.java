@@ -36,6 +36,16 @@ public class cloudservice {
 			// }
 			respond = play_background_asr();
 			break;
+		case "asrmessage_notify":
+			// DataTable dt = Help.getDataTable("select top 1* from Question where
+			// r_items_id=1 order by r_order");
+			// if (dt != null && dt.Rows.Count > 0) {
+			// flowdata = dt.Rows[0]["r_id"].ToString();
+			// asr(dt.Rows[0]["r_name"].ToString());
+			// }
+			System.out.println("------asrmessage_notify-------" + smart.get("message"));
+			respond = bridge(smart);
+			break;
 		case "asr_result":
 			// if (smart.Errorcode == 0) {
 			// PublicClass.SetLogs(null,
@@ -131,11 +141,11 @@ public class cloudservice {
 			// }
 			break;
 		case "bridge_result":
-			// if (smart.Errorcode == 0) {
-			// asr("呼叫分机成功，请继续测试");
-			// } else {
-			// asr("呼叫分机失败，错误代码 " + smart.Errorcode + " 请继续测试");
-			// }
+			if ((int) smart.get("Errorcode") == 0) {
+				System.out.println("呼叫分机成功，请继续测试");
+			} else {
+				System.out.println("呼叫分机失败，错误代码 " + (int) smart.get("Errorcode") + " 请继续测试");
+			}
 			break;
 		case "leave":
 			// noop("");
@@ -173,6 +183,72 @@ public class cloudservice {
 		System.out.println(respond.toJSONString());
 		return respond;
 	}
+
+	// bridge 转接电话
+	// {"action":"bridge","flowdata":"","params":{"number":"sofia\/external\/a8008@sip.ddrj.com:16080",
+	// "callerid":"","gateway":"","prompt":"\u6b63\u5728\u8f6c\u63a5\u4e2d\uff0c\u8bf7\u7b49\u5f85","background":"wating.wav"}}
+	// number 被叫号码，如果gateway没设置，必须是完整呼叫串类似:sofia/external/电话号码@网关Ip
+	// callerid 可选参数 主叫号码（对方看到的来电显示）
+	// gateway 可选参数 网关名字
+	// background 可选参数 背景音乐
+	// prompt 可选参数 提示文本 prompt 提示文本（如果最后4个字是.wav，就是录音文件放音，否则会调用TTS生成声音文件）。
+	// smart{
+	// "calleeid": "8888abc",
+	// "callerid": "abc",
+	// "callid": "ea6d1235-aaab-4251-b03b-3b53ca32e00d",
+	// "errorcode": 0,
+	// "flowdata": "流程选择",
+	// "flowid": "abc",
+	// "message": "1.你好；2.什么事；",
+	// "notify": "asrmessage_notify",
+	// "speakms": "1162" //整句话的说话时间，包含暂停时间
+	// }
+	public JSONObject bridge(JSONObject smart) {
+		JSONObject respond = new JSONObject();
+
+		respond.put("action", "bridge");
+		respond.put("flowdata", "");
+		JSONObject params = new JSONObject();
+		params.put("number", "sofia/internal/sip:1000@192.168.31.182:5060");
+		params.put("callerid", "");
+		params.put("gateway", "");
+		params.put("prompt", "");
+		params.put("background", "");
+		respond.put("params", params);
+		System.out.println(respond.toJSONString());
+		return respond;
+	}
+	// public String bridge(String number, String callerid, String gateway, String
+	// prompt, String background) {
+	// DataTable dt_params = new DataTable();
+	// dt_params.Columns.Add("number", typeof(String));
+	// dt_params.Columns.Add("callerid", typeof(String));
+	// dt_params.Columns.Add("gateway", typeof(String));
+	// dt_params.Columns.Add("prompt", typeof(String));
+	// dt_params.Columns.Add("background", typeof(String));
+	// DataRow dr_params = dt_params.NewRow();
+	// dr_params["number"] = number;
+	// dr_params["callerid"] = callerid;
+	// dr_params["gateway"] = gateway;
+	// dr_params["prompt"] = prompt;
+	// dr_params["background"] = background;
+	// dt_params.Rows.Add(dr_params);
+	//
+	// DataTable dt = new DataTable();
+	// dt.Columns.Add("action", typeof(String));
+	// dt.Columns.Add("flowdata", typeof(String));
+	// dt.Columns.Add("params", typeof(object));
+	// DataRow dr = dt.NewRow();
+	// dr["action"] = "bridge";
+	// dr["flowdata"] = flowdata;
+	// dr["params"] = json.ToJson(dt_params);
+	// dt.Rows.Add(dr);
+	//
+	// String str = json.ToJson(dt);
+	// Response.Write(str);
+	// PublicClass.SetLogs(null, "bridge：" + str);// 提交日志;
+	// return str;
+	// }
 	// DataTable dt_params = new DataTable();
 	// dt_params.Columns.Add("prompt", typeof(String));
 	// dt_params.Columns.Add("max_waiting_ms", typeof(int));
@@ -391,37 +467,7 @@ public class cloudservice {
 	// return str;
 	// }
 	//
-	// public String bridge(String number, String callerid, String gateway, String
-	// prompt, String background) {
-	// DataTable dt_params = new DataTable();
-	// dt_params.Columns.Add("number", typeof(String));
-	// dt_params.Columns.Add("callerid", typeof(String));
-	// dt_params.Columns.Add("gateway", typeof(String));
-	// dt_params.Columns.Add("prompt", typeof(String));
-	// dt_params.Columns.Add("background", typeof(String));
-	// DataRow dr_params = dt_params.NewRow();
-	// dr_params["number"] = number;
-	// dr_params["callerid"] = callerid;
-	// dr_params["gateway"] = gateway;
-	// dr_params["prompt"] = prompt;
-	// dr_params["background"] = background;
-	// dt_params.Rows.Add(dr_params);
-	//
-	// DataTable dt = new DataTable();
-	// dt.Columns.Add("action", typeof(String));
-	// dt.Columns.Add("flowdata", typeof(String));
-	// dt.Columns.Add("params", typeof(object));
-	// DataRow dr = dt.NewRow();
-	// dr["action"] = "bridge";
-	// dr["flowdata"] = flowdata;
-	// dr["params"] = json.ToJson(dt_params);
-	// dt.Rows.Add(dr);
-	//
-	// String str = json.ToJson(dt);
-	// Response.Write(str);
-	// PublicClass.SetLogs(null, "bridge：" + str);// 提交日志;
-	// return str;
-	// }
+
 	//
 	// public String deflect(String number) {
 	// DataTable dt_params = new DataTable();

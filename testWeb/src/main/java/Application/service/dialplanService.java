@@ -43,7 +43,7 @@ public class dialplanService {
 		Date nowDate = df.parse(now);
 		adt.setCreate_datetime(nowDate);
 		adt.setAlter_datetime(nowDate);
-		adt.setMaximumcall(1);
+		adt.setMaximumcall(2);
 		adt.setDestination_extension("8888");
 		adt.setDestination_dialplan("XML");
 		adt.setDestination_context("public");

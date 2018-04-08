@@ -38,26 +38,36 @@ public class autodialer_numberDao {
 		sb.append("UNIQUE INDEX `number` (`number`))");
 		System.out.println(sb.toString());
 		try {
-			
+
 			jdbctemplate.update(sb.toString());
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
-		
+
 	}
+
 	public Boolean importphone(String tableId) {
 
 		try {
-//			jdbctemplate.execute("INSERT INTO autodialer_number_"+tableId+""
-//					+ "(id,number,state,description,recycle,callid,calldate,answerdate,hangupdate,bill,duration,hangupcause,bridge_callid,bridge_number,bridge_calldate"
-//					+ "bridge_answerdate,recordfile,status) VALUES('','15960285998','','','','','','','','','','','','','','','','')"); 
-			jdbctemplate.execute("INSERT INTO `autodialer_number_"+tableId+"`(`id`, `number`, `state`, `description`, "
+			// jdbctemplate.execute("INSERT INTO autodialer_number_"+tableId+""
+			// +
+			// "(id,number,state,description,recycle,callid,calldate,answerdate,hangupdate,bill,duration,hangupcause,bridge_callid,bridge_number,bridge_calldate"
+			// + "bridge_answerdate,recordfile,status)
+			// VALUES('','15960285998','','','','','','','','','','','','','','','','')");
+//			jdbctemplate.execute("INSERT INTO `autodialer_number_" + tableId
+//					+ "`(`id`, `number`, `state`, `description`, "
+//					+ "`recycle`, `callid`, `calldate`, `answerdate`, `hangupdate`, "
+//					+ "`bill`, `duration`, `hangupcause`, `bridge_callid`, `bridge_number`, "
+//					+ "`bridge_calldate`, `bridge_answerdate`, `recordfile`, `status`) "
+//					+ "VALUES (1,'15960285998',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)");
+			jdbctemplate.execute("INSERT INTO `autodialer_number_" + tableId
+					+ "`(`id`, `number`, `state`, `description`, "
 					+ "`recycle`, `callid`, `calldate`, `answerdate`, `hangupdate`, "
 					+ "`bill`, `duration`, `hangupcause`, `bridge_callid`, `bridge_number`, "
 					+ "`bridge_calldate`, `bridge_answerdate`, `recordfile`, `status`) "
-					+ "VALUES (1,'15960285998',NULL,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)");
+					+ "VALUES (2,'13599039564',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)");
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,6 +75,7 @@ public class autodialer_numberDao {
 		return false;
 
 	}
+
 	public Boolean drop(String tableId) {
 		StringBuffer sb = new StringBuffer("");
 		sb.append("DROP TABLE `" + "autodialer_number_" + tableId);
