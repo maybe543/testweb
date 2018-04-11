@@ -12,7 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 //@EnableAutoConfiguration  
 //
 public class App {  
-    public static void main(String[] args) {  
+    public static void main(String[] args) { 
+//    	cloudThread ct =new cloudThread();
+//    	ct.start();
         SpringApplication.run(App.class, args);  
     }  
 }  

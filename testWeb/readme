@@ -55,3 +55,10 @@ CREATE TABLE `autodialer_number_7a5b7003-8b9a-4c68-a323-e2c1060c4a48` (
 PRIMARY KEY (`id`),
 UNIQUE INDEX `number` (`number`)
 )
+
+
+
+拨打号码，拨打情况反馈时常，对话文字，语音；
+	代理信息 帐号 线路；
+	拨打设置，时间点，工作日，节假日，；
+	话术，json

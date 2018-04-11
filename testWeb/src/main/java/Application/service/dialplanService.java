@@ -33,6 +33,32 @@ public class dialplanService {
 	// VALUES
 	// (UUID(),'test',NOW(),100,'7000','XML','IVR',10,'7000','sofia/external/%s@192.168.1.100:5060')
 
+	public void dialine(String line) throws ParseException {
+		autodialer_task adt = new autodialer_task();
+		adt.setUuid(UUID.randomUUID().toString());
+		adt.setName("wszdialpalntest1");
+
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String now = df.format(Calendar.getInstance().getTime());
+		Date nowDate = df.parse(now);
+		adt.setCreate_datetime(nowDate);
+		adt.setAlter_datetime(nowDate);
+		adt.setMaximumcall(2);
+		adt.setDestination_extension("8888");
+		adt.setDestination_dialplan("XML");
+		adt.setDestination_context("public");
+//		adt.setScheduling_policy_ratio(10);
+		adt.setScheduling_queue("");
+//		adt.setDial_format("sofia/external/%s@192.168.31.180:5060");
+		adt.setDial_format("user/goip1");
+		adt.set_Origination_caller_id_number(line);//获取线路
+		adt.setStart(1);
+		uu = adt.getUuid();
+		//创建拨号号码表
+		autodialer_numberdao.create(uu);
+		autodialer_numberdao.importphone(uu);
+		taskdao.save(adt);
+	}
 	public void dialplan1() throws ParseException {
 		autodialer_task adt = new autodialer_task();
 		adt.setUuid(UUID.randomUUID().toString());
@@ -51,7 +77,7 @@ public class dialplanService {
 		adt.setScheduling_queue("");
 //		adt.setDial_format("sofia/external/%s@192.168.31.180:5060");
 		adt.setDial_format("user/goip1");
-		adt.set_Origination_caller_id_number("CHINAUNICOM");
+		adt.set_Origination_caller_id_number("CHINAUNICOM");//获取线路
 		adt.setStart(1);
 		uu = adt.getUuid();
 		//创建拨号号码表

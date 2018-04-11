@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.*;
 
 import Application.Dao.LogDao;
-import Application.service.cloudservice;
+import Application.service.smartService;
 
 
 @RestController
 @RequestMapping("/api")
 public class APIController {
 	@Resource
-	cloudservice cls;
+	smartService smts;
 
 	
 
@@ -38,7 +38,7 @@ public class APIController {
 		System.out.println(smart);
 		System.out.println("begin to send to respondse");
 				
-		return JSON.toJSONString(cls.responseToSmartivr(smart));
+		return JSON.toJSONString(smts.responseToSmartivr(smart));
         
        
     }
